@@ -2,15 +2,15 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-4">
-            <div class="card border-0 shadow">
-                <div class="card-body py-5">
+    <div class="row min-vh-100 align-items-center justify-content-center">
+        <div class="col-xl-4 col-lg-5 col-md-6">
+            <div class="card border-0 shadow px-4 py-5">
+                <div class="card-body">
                     <h2 class="fw-medium">{{ __('Login') }}</h2>
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
                         <div class="form-group mb-3">
-                            <label for="username" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                            <label for="username">{{ __('Username') }}</label>
                             <input id="username" type="username" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
                             @error('username')
                                 <span class="invalid-feedback" role="alert">
@@ -20,7 +20,7 @@
                         </div>
 
                         <div class="form-group mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                            <label for="password">{{ __('Password') }}</label>
                             <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
                             @error('password')
                                 <span class="invalid-feedback" role="alert">
@@ -39,16 +39,24 @@
                             </div>
                         </div>
                         <div class="d-grid">
-                            <button type="submit" class="btn btn-primary">
+                            <button type="submit" class="btn btn-primary mb-4">
                                 {{ __('Login') }}
                             </button>
+                            
+                            @if (Route::has('password.request'))
+                                <span class="text-center">
+                                    Don't have an account? <a class="text-decoration-none" href="{{ route('register') }}">
+                                        {{ __('Create an account') }}
+                                    </a>
+                                </span>
+                            @endif
                         </div>
                     </form>
                 </div>
             </div>
             <div class="text-center my-3">
                 @if (Route::has('password.request'))
-                    <a class="btn btn-link" href="{{ route('password.request') }}">
+                    <a class="btn btn-link text-decoration-none" href="{{ route('password.request') }}">
                         {{ __('Forgot Your Password?') }}
                     </a>
                 @endif
