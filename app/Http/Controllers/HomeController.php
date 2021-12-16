@@ -25,11 +25,11 @@ class HomeController extends Controller
     public function index()
     {
         $posts = Post::all();
-        // $stories = Story::all();
+        $stories = Story::all();
         // dd($posts);
         return view('home', [
             'posts'=> $posts,
-            // 'stories' => $stories
+            'stories' => $stories
         ]);
     }
 }

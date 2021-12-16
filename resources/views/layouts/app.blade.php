@@ -23,7 +23,7 @@
     <div id="app">
         <nav class="navbar fixed-top navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/home') }}">
+                <a class="navbar-brand" href="{{ route('home') }}">
                     <img src="{{asset('images/insta-logo.png')}}" height="29px">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -64,7 +64,7 @@
 
                                 <ul class="border-0 shadow dropdown-menu dropdown-menu-end py-0" aria-labelledby="navbarDropdown">
                                     <li>
-                                        <a class="dropdown-item py-2" href="{{ route('account') }}">
+                                        <a class="dropdown-item py-2" href="{{ route('profile.show', ['username'=> Auth::user()->username]) }}">
                                             {{ __('Profile') }}
                                         </a>
                                     </li>

@@ -39,15 +39,13 @@
             <div class="tab-content mt-2" id="nav-tabContent">
                 <div class="tab-pane fade show active" id="nav-posts" role="tabpanel" aria-labelledby="nav-posts-tab">
                     <div class="row">
-                        <div class="col-md-4 overflow-hidden">
-                            <img src="images/134275659_215207200087206_4868482135702417265_n.jpeg" width="100%">
-                        </div>
-                        <div class="col-md-4">
-                            <img src="images/134275659_215207200087206_4868482135702417265_n.jpeg" width="100%">
-                        </div>
-                        <div class="col-md-4">
-                            <img src="images/134275659_215207200087206_4868482135702417265_n.jpeg" width="100%">
-                        </div>
+                        @forelse ($posts as $post)
+                            <div class="col-md-4 overflow-hidden">
+                                <img src="images/134275659_215207200087206_4868482135702417265_n.jpeg" width="100%">
+                            </div>
+                        @empty
+                            <p>No posts found. Check again soon.</p>
+                        @endforelse
                     </div>
                 </div>
                 <div class="tab-pane fade" id="nav-reels" role="tabpanel" aria-labelledby="nav-reels-tab">...</div>

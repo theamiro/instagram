@@ -10,12 +10,11 @@ class ProfileController extends Controller
 {
     public function index($username) {
         $user = User::where('username', $username)->first();
-        // $posts = Post::where('user_id', $user->id);
-        
-        // dd($posts);
+        $posts = Post::where('user_id', $user->id)->get();
+    
         return view('profile', [
             'user' => $user,
-            // 'posts' => $posts,
+            'posts' => $posts,
         ]);
     }
 }

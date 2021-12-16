@@ -23,10 +23,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-8">
             @forelse ($posts as $post)
                 <div class="feed-post mb-4">
                     <div class="card shadow border-0">  
@@ -58,6 +54,33 @@
                 </div>
             @endforelse
         </div>
+        @auth
+        <div class="col-md-4">
+            <div class="d-flex justfy-content-between align-items-center mb-4 gap-3">
+                <img class="rounded-circle" src="{{asset('/images/134275659_215207200087206_4868482135702417265_n.jpeg')}}" height="60" width="60">
+                <div class="d-flex flex-column">
+                    <h5 class="mb-0">{{Auth::user()->username}}</h5>
+                    <p class="mb-0">{{Auth::user()->name}}</p>
+                </div>
+            </div>
+            <div class="d-flex flex-row justify-content-between align-items-center mb-2">
+                <h6 class="mb-0 text-grey fw-bold">Suggestions for you</h6>
+                <a class="btn btn-link btn-sm fw-bold text-dark text-decoration-none" href="#">See all</a>
+            </div>
+            <div class="d-flex flex-row align-items-center gap-3">
+                <img class="rounded-circle" src="{{asset('/images/134275659_215207200087206_4868482135702417265_n.jpeg')}}" height="36" width="36">
+                <div class="d-flex flex-column">
+                    <h6 class="mb-0 fw-bold lh-sm">LogosChristianSchool</h6>
+                    <p class="mb-0 lh-sm text-muted">
+                        <small>
+                        Followed by theamiro, honester + 1 more
+                        </small>
+                    </p>
+                </div>
+                <a class="btn btn-link btn-sm fw-bold text-decoration-none ms-auto" href="#">Follow</a>
+            </div>
+        </div>
+        @endauth
     </div>
 </div>
 @endsection
