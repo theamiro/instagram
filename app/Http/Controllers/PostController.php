@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use \App\Models\Post;
 use Illuminate\Http\Request;
+use Intervention\Image\ImageManager;
 
 class PostController extends Controller
 {
@@ -20,6 +21,11 @@ class PostController extends Controller
             'media'=> ['required', 'image'],
         ]);
         $path = request('media')->store('uploads', 'public');
+        $manager = new ImageManager();
+
+        $image = $manager->make(public_path("/storage/{$path}"))->fit(1200, 1200);
+
+        $image->save();
         auth()->user()->posts()->create([
             'caption' => $data['caption'],
             'media' => $path,
