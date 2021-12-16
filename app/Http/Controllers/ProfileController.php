@@ -10,9 +10,9 @@ class ProfileController extends Controller
 {
     public function index($username) {
         $user = User::where('username', $username)->first();
-        $posts = Post::where('user_id', $user->id)->get();
+        $posts = Post::where('user_id', $user->id)->orderBy('created_at', 'desc')->get();
     
-        return view('profile', [
+        return view('profiles.index', [
             'user' => $user,
             'posts' => $posts,
         ]);

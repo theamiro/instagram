@@ -3,7 +3,10 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-8">
+        <div @class([
+            'col-md-8' => Auth::user(),
+            'col-md-12' => !Auth::user()
+        ])>
             @if (session('status'))
                 <div class="alert alert-success" role="alert">
                     {{ session('status') }}
@@ -33,7 +36,7 @@
                                 <h5 class="mb-0 username">{{ $post->user->username }}</h5>
                             </div>
                         </div>              
-                        <div class="card-body" style="height: 800px; width: 100%; background-image:url('{{ $post->media }}'); background-size: cover; background-repeat: no-repeat;">
+                        <div class="card-body" style="height: 800px; width: 100%; background-image:url('/storage/{{ $post->media }}'); background-size: cover; background-repeat: no-repeat;">
                         </div>
                         <div class="card-footer">
                             <div class="interaction-buttons d-flex gap-2 my-2">

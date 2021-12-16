@@ -9,11 +9,13 @@
         <div class="col-md-8">
             <div class="d-flex align-items-center gap-4 mb-3">
                 <h2 class="mb-0">{{ $user->username }}</h2>
-                <a class="btn btn-outline-secondary btn-sm" href="{{route('account')}}">Edit Profile</a>
+                @auth
+                    <a class="btn btn-outline-secondary btn-sm" href="{{route('account')}}">Edit Profile</a>
+                @endauth
             </div>
             <div class="d-flex gap-4 statistics fs-5 mb-3">
                 <div class="">
-                    <strong >34</strong> posts
+                    <strong >{{$user->posts->count()}}</strong> posts
                 </div>
                 <div class="">
                     <strong>465</strong> followers
@@ -22,9 +24,15 @@
                     <strong>289</strong> following
                 </div>
             </div>
-            <p class="fw-bold mb-0 fs-5">{{ $user->profile->displayName ?? "display Name"}}</p>
-            <p class="mb-0 me-5">{{ $user->profile->bio ?? "Bio"}}</p>
-            <a class="fw-bold text-decoration-none" href="{{$user->profile->hyperlink ?? 'hyperlink'}}">{{$user->profile->hyperlink ?? "hyperlink"}}</a>
+            @isset($user->profile->displayName)
+                <p class="fw-bold mb-0 fs-5">{{ $user->profile->displayName}}</p>            
+            @endisset
+            @isset($user->profile->bio)
+            <p class="mb-0 me-5">{{ $user->profile->bio}}</p>
+            @endisset
+            @isset($user->profile->hyperlink)
+                <a class="fw-bold text-decoration-none" href="{{$user->profile->hyperlink}}">{{$user->profile->hyperlink}}</a>
+            @endisset
         </div>
     </div>
     <div class="row">
@@ -41,7 +49,7 @@
                     <div class="row">
                         @forelse ($posts as $post)
                             <div class="col-md-4 overflow-hidden">
-                                <img src="images/134275659_215207200087206_4868482135702417265_n.jpeg" width="100%">
+                                <img src="/storage/{{$post->media}}" width="100%">
                             </div>
                         @empty
                             <p>No posts found. Check again soon.</p>

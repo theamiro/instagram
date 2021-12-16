@@ -24,8 +24,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $posts = Post::all();
-        $stories = Story::all();
+        $posts = Post::all()->sortByDesc('created_at');
+        $stories = Story::all()->sortByDesc('created_at');
         // dd($posts);
         return view('home', [
             'posts'=> $posts,
