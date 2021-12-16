@@ -12,14 +12,14 @@
             <div class="card shadow border-0 mb-4">                
                 <div class="card-body">
                     <div class="d-flex align-items-center gap-3">
-                        <div class="story" style="border: 2px solid grey; border-radius: 50%; padding: 2px;">
-                            <div class="rounded-circle" style="height: 66px; width: 66px; background-image:url('images/134275659_215207200087206_4868482135702417265_n.jpeg'); background-size: cover; background-repeat: no-repeat;">
+                        @forelse ($stories as $story)
+                            <div class="story" style="border: 2px solid grey; border-radius: 50%; padding: 2px;">
+                                <div class="rounded-circle" style="height: 66px; width: 66px; background-image:url('images/134275659_215207200087206_4868482135702417265_n.jpeg'); background-size: cover; background-repeat: no-repeat;">
+                                </div>
                             </div>
-                        </div>
-                        <div class="story" style="border: 2px solid grey; border-radius: 50%; padding: 2px;">
-                            <div class="rounded-circle" style="height: 66px; width: 66px; background-image:url('images/134275659_215207200087206_4868482135702417265_n.jpeg'); background-size: cover; background-repeat: no-repeat;">
-                            </div>
-                        </div>
+                        @empty
+                            <p>No stories posted yet. Check again soon.</p>
+                        @endforelse
                     </div>
                 </div>
             </div>
@@ -27,7 +27,7 @@
     </div>
     <div class="row">
         <div class="col-md-8">
-            @foreach ($posts as $post)
+            @forelse ($posts as $post)
                 <div class="feed-post mb-4">
                     <div class="card shadow border-0">  
                         <div class="card-header bg-white py-3">
@@ -50,7 +50,13 @@
                         </div>
                     </div>
                 </div>
-            @endforeach
+            @empty 
+                <div class="card shadow border-0">  
+                    <div class="card-body text-center">
+                        <p>No posts found at the moment, check again soon!</p>
+                    </div>
+                </div>
+            @endforelse
         </div>
     </div>
 </div>

@@ -7,7 +7,10 @@
             <img src="images/134275659_215207200087206_4868482135702417265_n.jpeg" width="200" height="200" class="rounded-circle">
         </div>
         <div class="col-md-8">
-            <h2>{{ $user->username }}</h2>
+            <div class="d-flex align-items-center gap-4 mb-3">
+                <h2 class="mb-0">{{ $user->username }}</h2>
+                <a class="btn btn-outline-secondary btn-sm" href="{{route('account')}}">Edit Profile</a>
+            </div>
             <div class="d-flex gap-4 statistics fs-5 mb-3">
                 <div class="">
                     <strong >34</strong> posts

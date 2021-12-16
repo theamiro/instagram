@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Post;
-
+use App\Models\Story;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -25,9 +25,11 @@ class HomeController extends Controller
     public function index()
     {
         $posts = Post::all();
+        // $stories = Story::all();
         // dd($posts);
         return view('home', [
-            'posts'=> $posts
+            'posts'=> $posts,
+            // 'stories' => $stories
         ]);
     }
 }
