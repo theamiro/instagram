@@ -2,20 +2,55 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
+    <div class="row">
         <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
+            @if (session('status'))
+                <div class="alert alert-success" role="alert">
+                    {{ session('status') }}
+                </div>
+            @endif
+            <div class="card shadow border-0 mb-4">                
                 <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
+                    <div class="d-flex align-items-center gap-3">
+                        <div class="story" style="border: 2px solid grey; border-radius: 50%; padding: 2px;">
+                            <div class="rounded-circle" style="height: 66px; width: 66px; background-image:url('images/134275659_215207200087206_4868482135702417265_n.jpeg'); background-size: cover; background-repeat: no-repeat;">
+                            </div>
                         </div>
-                    @endif
-
-                    {{ __('You are logged in!') }}
+                        <div class="story" style="border: 2px solid grey; border-radius: 50%; padding: 2px;">
+                            <div class="rounded-circle" style="height: 66px; width: 66px; background-image:url('images/134275659_215207200087206_4868482135702417265_n.jpeg'); background-size: cover; background-repeat: no-repeat;">
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            @foreach ($posts as $post)
+                <div class="feed-post mb-4">
+                    <div class="card shadow border-0">  
+                        <div class="card-header bg-white py-3">
+                            <div class="d-flex gap-4 align-items-center">
+                                <div class="rounded-circle" style="height: 33px; width: 33px; background-image:url('images/134275659_215207200087206_4868482135702417265_n.jpeg'); background-size: cover; background-repeat: no-repeat;">
+                                </div>
+                                <h5 class="mb-0 username">{{ $post->user->username }}</h5>
+                            </div>
+                        </div>              
+                        <div class="card-body" style="height: 800px; width: 100%; background-image:url('{{ $post->media }}'); background-size: cover; background-repeat: no-repeat;">
+                        </div>
+                        <div class="card-footer">
+                            <div class="interaction-buttons d-flex gap-2 my-2">
+                                <button>Like</button>
+                                <button>Comment</button>
+                                <button>Share</button>
+                            </div>
+                            <p class="mb-0"><strong>{{ $post->user->username }}</strong> {{ $post->caption }}</p>
+                            <p class="mb-0 text-uppercase fs-6 "><small>{{$post->created_at}}</small></p>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
         </div>
     </div>
 </div>
