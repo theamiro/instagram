@@ -24,8 +24,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $posts = Post::all()->sortByDesc('created_at');
-        $stories = Story::all()->sortByDesc('created_at');
+        $users = auth()->user()->following()->pluck('profiles.user_id');
+        $posts = Post::whereIn('user_id', $users)->orWhereIn('user_id', [auth()->user()->id])->with('user')->latest()->get();
+        $stories = Story::whereIn('user_id', $users)->with('user')->latest()->get();
         // dd($posts);
         return view('home', [
             'posts'=> $posts,
