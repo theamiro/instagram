@@ -57,7 +57,7 @@
                         </div>
                         <div class="d-grid pb-3" >
                             <button type="submit" class="btn btn-primary btn-lg">
-                                {{ __('Add new post') }}
+                                {{ __('Save Profile') }}
                             </button>
                         </div>
                     </form>

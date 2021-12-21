@@ -35,6 +35,7 @@ class ProfileController extends Controller
             'hyperlink'=> ['url', 'required'],
             'profilePicture'=> ['image']
         ]);
+
         if (request('profilePicture')) {
             $path = request('profilePicture')->store('profile', 'public');
             $manager = new ImageManager();
@@ -44,6 +45,7 @@ class ProfileController extends Controller
             $image->save();
             $imageArray = ['profilePicture' => $path];
         }
+
         auth()->user()->profile->update(array_merge(
             $data,
             $imageArray ?? []

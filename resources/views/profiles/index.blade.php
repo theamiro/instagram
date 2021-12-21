@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row my-4">
         <div class="col-md-4 d-flex justify-content-center">
-            <img src="{{$user->profile->profilePicture()}}" width="200" height="200" class="rounded-circle">
+            <img src="{{$user->profile->profilePicture();}}" width="200" height="200" class="rounded-circle">
         </div>
         <div class="col-md-8">
             <div class="d-flex align-items-center gap-4 mb-3">
