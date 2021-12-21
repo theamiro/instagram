@@ -12,7 +12,9 @@
                 @can('update', $user->profile)
                     <a class="btn btn-outline-secondary btn-sm" href="/{{$user->username}}/edit">Edit Profile</a>
                 @endcan
-                <follow-button username="{{$user->username}}" follows="{{$follows}}"></follow-button>
+                @if ($user->username != Auth::user()->username)
+                    <follow-button username="{{$user->username}}" follows="{{$follows}}"></follow-button>
+                @endif
             </div>
             <div class="d-flex gap-4 statistics fs-5 mb-3">
                 <div class="">

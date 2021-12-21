@@ -13,6 +13,8 @@ class FollowsController extends Controller
     
     public function store($username) {
         $user = User::whereUsername($username)->first();
-        return auth()->user()->following()->toggle($user->profile);
+        if($user != auth()->user()) {
+            return auth()->user()->following()->toggle($user->profile);
+        }
     }
 }
