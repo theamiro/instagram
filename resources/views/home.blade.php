@@ -70,18 +70,25 @@
                 <h6 class="mb-0 text-grey fw-bold">Suggestions for you</h6>
                 <a class="btn btn-link btn-sm fw-bold text-dark text-decoration-none" href="#">See all</a>
             </div>
-            <div class="d-flex flex-row align-items-center gap-3">
-                <img class="rounded-circle" src="{{asset('/images/134275659_215207200087206_4868482135702417265_n.jpeg')}}" height="36" width="36">
-                <div class="d-flex flex-column">
-                    <h6 class="mb-0 fw-bold lh-sm">LogosChristianSchool</h6>
-                    <p class="mb-0 lh-sm text-muted">
-                        <small>
-                        Followed by theamiro, honester + 1 more
-                        </small>
-                    </p>
-                </div>
-                <a class="btn btn-link btn-sm fw-bold text-decoration-none ms-auto" href="#">Follow</a>
-            </div>
+            @forelse ($suggestions as $suggestion)
+                <a href="/{{$suggestion->username}}" class="d-flex">
+                    <div class="d-flex flex-row align-items-center gap-3 mb-3">
+                        <img class="rounded-circle" src="{{$suggestion->profile->profilePicture()}}" height="36" width="36">
+                        <div class="d-flex flex-column">
+                            <h6 class="mb-0 fw-bold lh-sm">{{$suggestion->username}}</h6>
+                            <p class="mb-0 lh-sm text-muted">
+                                <small>
+                                Followed by theamiro, honester + 1 more
+                                </small>
+                            </p>
+                        </div>
+                        {{-- <follow-button username="{{$suggestion->username}}" follows="true"></follow-button> --}}
+                        <a class="btn btn-link btn-sm fw-bold text-decoration-none ms-auto" href="#">Follow</a>
+                    </div>
+                </a>
+            @empty
+                <p>None found</p>
+            @endforelse
         </div>
         @endauth
     </div>

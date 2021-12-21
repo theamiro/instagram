@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Models\Story;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -26,11 +27,13 @@ class HomeController extends Controller
     {
         $users = auth()->user()->following()->pluck('profiles.user_id');
         $posts = Post::whereIn('user_id', $users)->orWhereIn('user_id', [auth()->user()->id])->with('user')->latest()->get();
+        $suggestions = User::whereNotIn('id', [auth()->user()->id])->latest()->get();
         $stories = Story::whereIn('user_id', $users)->with('user')->latest()->get();
         // dd($posts);
         return view('home', [
             'posts'=> $posts,
-            'stories' => $stories
+            'stories' => $stories,
+            'suggestions' => $suggestions
         ]);
     }
 }
