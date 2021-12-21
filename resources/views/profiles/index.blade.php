@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row my-4">
         <div class="col-md-4 d-flex justify-content-center">
-            <img src="{{$user->profile->profilePicture();}}" width="200" height="200" class="rounded-circle">
+            <img src="{{$user->profile->profilePicture()}}" width="200" height="200" class="rounded-circle">
         </div>
         <div class="col-md-8">
             <div class="d-flex align-items-center gap-4 mb-3">
@@ -12,16 +12,17 @@
                 @can('update', $user->profile)
                     <a class="btn btn-outline-secondary btn-sm" href="/{{$user->username}}/edit">Edit Profile</a>
                 @endcan
+                <follow-button username="{{$user->username}}" follows="{{$follows}}"></follow-button>
             </div>
             <div class="d-flex gap-4 statistics fs-5 mb-3">
                 <div class="">
                     <strong >{{$user->posts->count()}}</strong> posts
                 </div>
                 <div class="">
-                    <strong>465</strong> followers
+                    <strong>{{$user->profile->followers->count()}}</strong> followers
                 </div>
                 <div class="">
-                    <strong>289</strong> following
+                    <strong>{{$user->following->count()}}</strong> following
                 </div>
             </div>
             @isset($user->profile->displayName)

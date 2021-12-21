@@ -13,9 +13,11 @@ class ProfileController extends Controller
         $user = User::whereUsername($username)->firstOrFail();
         $posts = Post::where('user_id', $user->id)->orderBy('created_at', 'desc')->get();
     
+        $follows = (auth()->user()) ? auth()->user()->following->contains($user->id) : false;
         return view('profiles.index', [
             'user' => $user,
             'posts' => $posts,
+            'follows' => $follows
         ]);
     }
 
