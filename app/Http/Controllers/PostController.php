@@ -33,4 +33,8 @@ class PostController extends Controller
 
         return redirect('/');
     }
+
+    public function show(Post $post) {
+        return view("posts.show", compact('post'));
+    }
 }

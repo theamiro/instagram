@@ -17,7 +17,7 @@
                     <div class="d-flex align-items-center gap-3">
                         @forelse ($stories as $story)
                             <div class="story" style="border: 2px solid grey; border-radius: 50%; padding: 2px;">
-                                <div class="rounded-circle" style="height: 66px; width: 66px; background-image:url('images/134275659_215207200087206_4868482135702417265_n.jpeg'); background-size: cover; background-repeat: no-repeat;">
+                                <div class="rounded-circle" style="height: 66px; width: 66px; background-image:url('/storage/{{$post->user->profile->profilePicture ?? ""}}'); background-size: cover; background-repeat: no-repeat;">
                                 </div>
                             </div>
                         @empty
@@ -30,10 +30,10 @@
                 <div class="feed-post mb-4">
                     <div class="card shadow border-0">  
                         <div class="card-header bg-white py-3">
-                            <div class="d-flex gap-4 align-items-center">
-                                <div class="rounded-circle" style="height: 33px; width: 33px; background-image:url('images/134275659_215207200087206_4868482135702417265_n.jpeg'); background-size: cover; background-repeat: no-repeat;">
+                            <div class="d-flex gap-3 align-items-center">
+                                <div class="rounded-circle" style="height: 33px; width: 33px; background-image:url('{{$post->user->profile->profilePicture()}}'); background-size: cover; background-repeat: no-repeat;">
                                 </div>
-                                <h5 class="mb-0 username">{{ $post->user->username }}</h5>
+                                <a href="/{{$post->user->username}}" class="h5 mb-0 text-decoration-none text-dark username">{{ $post->user->username }}</a>
                             </div>
                         </div>              
                         <div class="card-body" style="height: 800px; width: 100%; background-image:url('/storage/{{ $post->media }}'); background-size: cover; background-repeat: no-repeat;">
@@ -60,7 +60,7 @@
         @auth
         <div class="col-md-4">
             <div class="d-flex justfy-content-between align-items-center mb-4 gap-3">
-                <img class="rounded-circle" src="{{asset('/images/134275659_215207200087206_4868482135702417265_n.jpeg')}}" height="60" width="60">
+                <img class="rounded-circle" src="{{Auth::user()->profile->profilePicture()}}" height="60" width="60">
                 <div class="d-flex flex-column">
                     <h5 class="mb-0">{{Auth::user()->username}}</h5>
                     <p class="mb-0">{{Auth::user()->name}}</p>

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use \App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -13,9 +14,13 @@ class Profile extends Model
         'bio',
         'displayName',
         'hyperlink',
+        'profilePicture',
     ];
 
     public function user() {
         return $this->belongsTo(User::class);
+    }
+    public function profilePicture() {
+        return ($this->image ? '/storage/'.$this->image : '/images/placeholder.jpeg');
     }
 }

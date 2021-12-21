@@ -8,6 +8,9 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
+use \App\Models\Post;
+use \App\Models\Profile;
+
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
@@ -43,11 +46,28 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    protected static function boot() {
+        parent::boot();
+        static::created(function ($user) {
+
+            $user->profile()->create([
+                'displayName' => $user->name
+            ]);
+        });
+    }
     public function profile() {
         return $this->hasOne(Profile::class);
     }
 
     public function posts() {
         return $this->hasMany(Post::class);
+    }
+
+    public function followers() {
+        return $this->hasMany(Follower::class);
+    }
+
+    public function following() {
+        return $this->hasMany(Following::class);
     }
 }
