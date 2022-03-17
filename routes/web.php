@@ -15,7 +15,6 @@ use Illuminate\Support\Facades\Route;
 */
 Auth::routes();
 
-
 Route::post('/follow/{username}', '\App\Http\Controllers\FollowsController@store');
 
 Route::get('/', 'App\Http\Controllers\HomeController@index')->name('home');

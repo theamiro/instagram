@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Post;
 use App\Models\Profile;
+use Illuminate\Support\Facades\Auth;
 use Intervention\Image\ImageManager;
 
 class ProfileController extends Controller
@@ -30,7 +31,9 @@ class ProfileController extends Controller
         return view('profiles.edit', compact('user', 'profile'));
     }
 
-    public function update(User $user) {
+    public function update() {
+        $user = Auth::user();
+
         $data = request()->validate([
             'displayName'=> 'required',
             'bio'=> 'required',
@@ -48,12 +51,12 @@ class ProfileController extends Controller
             $imageArray = ['profilePicture' => $path];
         }
 
-        auth()->user()->profile->update(array_merge(
+        $user->profile->update(array_merge(
             $data,
             $imageArray ?? []
         ));
 
-        return redirect("/{$user->username}");
+        return redirect("/{$user->username}")->with('status', "Profile updated successfully.");
 
     }
 }

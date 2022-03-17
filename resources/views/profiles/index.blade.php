@@ -3,6 +3,11 @@
 @section('content')
 <div class="container">
     <div class="row my-4">
+        @if (session('status'))
+            <div class="col-md-12">
+                {{session('status')}}
+            </div>
+        @endif
         <div class="col-md-4 d-flex justify-content-center">
             <img src="{{$user->profile->profilePicture()}}" width="200" height="200" class="rounded-circle">
         </div>

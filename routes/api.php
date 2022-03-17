@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use \App\Models\User;
@@ -25,4 +26,7 @@ Route::get('users', function () {
 });
 Route::get('users/{username}', function ($username) {
     return User::whereUsername($username)->firstOrFail();
+});
+Route::get('/posts', function () {
+    return Post::with('user')->get();
 });
